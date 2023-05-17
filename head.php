@@ -14,6 +14,7 @@ require_once $homeurl . "/include/createbd.php";
 
 require_once $homeurl . "/include/showerrors.php";
 require_once $homeurl . "/include/functions.php";
+require_once $homeurl . "/include/Classes/CategoryClass.php";
 
 
 
@@ -21,4 +22,9 @@ require_once $homeurl . "/include/functions.php";
 /* Не объявить в globals потому что глобалс подключается выше functions */
 if (!isset($auth)) {
     $auth = new AuthClass();
+}
+
+
+if (!isset($cat_obj)) {
+    $cat_global = new CategoryClass();
 }

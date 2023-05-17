@@ -22,11 +22,11 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/layouts/head.php";
       $all[$rez['id']] = $rez;
     }
 
-    $tree = $auth->getTree($all);
+    $tree = $cat_global->getTree($all);
 
     /* $auth->debug($tree); */
 
-    echo $auth->build_menu_list($tree);
+    echo $cat_global->build_menu_list($tree);
     ?>
 
   </div>
@@ -72,14 +72,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/layouts/head.php";
 
           <div class="form-row">
             <select class="popup2_parent_id" id="popup2_parent_id">
-              <option value="0">Верхний уровень</option><?php echo $auth->build_menu_select($tree); ?>
+              <option value="0">Верхний уровень</option><?php echo $cat_global->build_menu_select($tree); ?>
             </select>
           </div>
 
 
           <div class="text-center" style="margin-top: 2rem;margin-bottom:1rem;">
             <button class="btnform1 update" type="submit">Обновить</button>
-            <button class="btnform2 del" type="submit">Удалить включая вложения</button>
+            <!-- <button class="btnform2 del" type="submit">Удалить включая вложения</button> -->
           </div>
 
         </form>
@@ -112,7 +112,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/layouts/head.php";
 
           <div class="form-row">
             <select class="popup3_parent_id" id="popup3_parent_id">
-              <option value="0">Верхний уровень</option><?php echo $auth->build_menu_select($tree); ?>
+              <option value="0">Верхний уровень</option><?php echo $cat_global->build_menu_select($tree); ?>
             </select>
           </div>
 

@@ -128,7 +128,7 @@ function validatepopup2() {
     if (popup2_id.value == popup2_parent_id.value) {
         popup2_parent_id.style.borderColor = 'red';
         valid = false;
-        alert("Элемент не может быть родителем самого себя. Так же нужно понимать что корневой элемент не должен содержать parent_id. В случае если будет пересечение элементов у которых нет parent_id у которого он равен NULL, тогда просто не будет варианта отображения элементов, они просто не будут выведенч на экран");
+        alert("Элемент не может быть родителем самого себя. Так же нужно понимать что корневой элемент не должен содержать parent_id. В случае если будет пересечение элементов у которых нет parent_id у которого он равен NULL, тогда просто не будет варианта отображения элементов, они просто не будут выведены на экран");
     } else {
         popup2_title.style.borderColor = 'green';
     }
@@ -405,33 +405,35 @@ if (document.querySelector(".index_id")) {
 
 
     /* Del */
-    document.querySelector(".del").addEventListener("click", async function (event) {
-        event.preventDefault();
+    let boxes3 = document.querySelectorAll('.del');
+    for (let box3 of boxes3) {
+        box3.addEventListener("click", async function handleClick3(event) {
+            event.preventDefault();
 
-        var token2 = document.getElementById("token2").value;
-        var popup2_id = document.getElementById("popup2_id").value;
+            var token2 = document.getElementById("token2").value;
+            var box3_id = this.getAttribute('data-id');
 
-        let formData = new FormData();
-        formData.append('token', token2);
-        formData.append('popup2_id', popup2_id);
+            let formData = new FormData();
+            formData.append('token', token2);
+            formData.append('popup2_id', box3_id);
 
-        let response = await fetch('/lk/del_category.php', {
-            method: 'POST',
-            body: formData
+            let response = await fetch('/lk/del_category.php', {
+                method: 'POST',
+                body: formData
+            });
+
+            let data = await response.json();
+            console.dir(data);
+
+            if (data.rezultstatus == "1") {
+                /* document.querySelector(".return_info2").textContent = data.rezultmes; */
+                setTimeout(rloadpage, 1000);
+            } else {
+                /* document.querySelector(".return_info2").textContent = data.rezultmes; */
+            }
+
         });
-
-        let data = await response.json();
-        console.dir(data);
-
-        if (data.rezultstatus == "1") {
-            document.querySelector(".return_info2").textContent = data.rezultmes;
-            setTimeout(rloadpage, 2000);
-        } else {
-            document.querySelector(".return_info2").textContent = data.rezultmes;
-        }
-
-    });
-
+    }
 
 }
 
